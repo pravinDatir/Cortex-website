@@ -5,6 +5,9 @@ import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { ArrowUpRight } from "lucide-react";
 
+import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
+
 interface ProjectCardProps {
   project: Project;
   index?: number;
@@ -33,18 +36,28 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Link href={`/projects/${project.slug}/`} className="group block">
-        <div className="glass-card overflow-hidden h-full">
-          {/* Thumbnail placeholder with gradient */}
-          <div className="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-br from-brand-primary/10 via-brand-secondary/10 to-brand-accent/10">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-4xl font-bold text-white/10">
-                {project.title.charAt(0)}
-              </span>
-            </div>
+        <div className="glass-card overflow-hidden h-full flex flex-col">
+          {/* Thumbnail Image */}
+          <div className="relative h-48 sm:h-56 overflow-hidden bg-surface">
+            {project.thumbnail ? (
+              <Image
+                src={getAssetPath(project.thumbnail)}
+                alt={project.title}
+                fill
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-primary/10 via-brand-secondary/10 to-brand-accent/10">
+                <span className="text-4xl font-bold text-white/10">
+                  {project.title.charAt(0)}
+                </span>
+              </div>
+            )}
             {/* Hover overlay */}
-            <div className="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/10 transition-all duration-500 flex items-center justify-center">
-              <div className="p-3 rounded-full bg-white/0 group-hover:bg-white/10 transition-all duration-300 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                <ArrowUpRight className="w-6 h-6 text-white" />
+            <div className="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/20 transition-all duration-500 flex items-center justify-center">
+              <div className="p-3 rounded-full bg-black/50 backdrop-blur-md transition-all duration-300 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 border border-white/10">
+                <ArrowUpRight className="w-5 h-5 text-white" />
               </div>
             </div>
           </div>

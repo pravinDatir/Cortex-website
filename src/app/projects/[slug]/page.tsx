@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/content/projects";
@@ -108,6 +110,21 @@ export default async function ProjectDetailPage({
               </div>
             </div>
           </ScrollReveal>
+
+          {/* Project Screenshot / Hero Image */}
+          {project.thumbnail && (
+            <ScrollReveal delay={0.25}>
+              <div className="relative h-64 sm:h-96 w-full rounded-2xl overflow-hidden mb-12 border border-white/10 glass-card">
+                <Image
+                  src={getAssetPath(project.thumbnail)}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+            </ScrollReveal>
+          )}
 
           {/* Problem & Solution */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">

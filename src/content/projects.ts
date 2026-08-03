@@ -26,7 +26,7 @@ export const projects: Project[] = [
       "Built a full-featured ERP application with role-based dashboards, dynamic BMR/BPR template management, real-time inventory tracking, automated PDF generation for compliance documents, and a configurable appearance system with accent-color theming.",
     technologies: ["PHP", "MySQL", "Tailwind CSS", "JavaScript", "Chart.js", "DOMPDF"],
     duration: "6 months",
-    thumbnail: "/projects/erp-thumb.webp",
+    thumbnail: "/projects/erp-thumb.png",
     featured: true,
   },
   {
@@ -41,7 +41,7 @@ export const projects: Project[] = [
       "Developed a full-stack Laravel 12 application with specialized B2B and B2C user portals, dynamic pricing management, automated PI generation with PDF creation, inventory & category management, RBAC, and real-time email notifications.",
     technologies: ["Laravel 12", "PHP 8.2", "Tailwind CSS v4", "Vite", "MySQL", "Laravel Fortify", "DOMPDF"],
     duration: "4 months",
-    thumbnail: "/projects/biogenix-thumb.webp",
+    thumbnail: "/projects/biogenix-thumb.png",
     featured: true,
   },
   {
@@ -56,7 +56,7 @@ export const projects: Project[] = [
       "Built a comprehensive Flutter app with role-based login (Customer/Doctor/Admin), real-time glucose dashboards with interactive charts, meal impact logging, AI-style coaching summaries, native CGM SDK bridge for sensor connectivity, push notifications via Firebase, and offline-first caching for glucose readings.",
     technologies: ["Flutter", "Dart", "Firebase", "Laravel API", "Railway", "CGM SDK", "Provider"],
     duration: "5 months",
-    thumbnail: "/projects/cgm-app-thumb.webp",
+    thumbnail: "/projects/cgm-app-thumb.png",
     featured: true,
   },
   {
@@ -71,7 +71,7 @@ export const projects: Project[] = [
       "Developed a responsive Laravel web application with Tailwind CSS and Vite, featuring patient data dashboards, glucose trend analysis views, report generation, user management with role-based access, and integration with the mobile app's backend API.",
     technologies: ["Laravel", "PHP", "Tailwind CSS", "Vite", "MySQL", "Chart.js"],
     duration: "3 months",
-    thumbnail: "/projects/cgm-web-thumb.webp",
+    thumbnail: "/projects/cgm-web-thumb.png",
     featured: false,
   },
   {
@@ -86,7 +86,7 @@ export const projects: Project[] = [
       "Built a modern e-commerce website on Wix with a curated product catalog organized by collections and categories, wishlist functionality, gift card support, sale section, responsive design, and integrated checkout — reflecting the brand's premium aesthetic.",
     technologies: ["Wix", "E-Commerce", "SEO", "Responsive Design", "Payment Gateway"],
     duration: "2 months",
-    thumbnail: "/projects/labelsr-thumb.webp",
+    thumbnail: "/projects/labelsr-thumb.png",
     featured: true,
     liveUrl: "https://www.labelsr.com/",
   },
