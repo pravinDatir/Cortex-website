@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { logoImg } from "@/lib/assets";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -35,7 +36,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <Image
-              src="/logo.png"
+              src={logoImg}
               alt="Cortex Analytix"
               width={44}
               height={44}

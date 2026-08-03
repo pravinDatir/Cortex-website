@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail } from "lucide-react";
+import { logoImg } from "@/lib/assets";
 
 /* Inline SVG icons for brand logos (removed from lucide-react) */
 function GithubIcon({ size = 18 }: { size?: number }) {
@@ -58,7 +59,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-5">
               <Image
-                src="/logo.png"
+                src={logoImg}
                 alt="Cortex Analytix"
                 width={40}
                 height={40}

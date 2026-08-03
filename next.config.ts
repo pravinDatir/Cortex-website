@@ -6,7 +6,6 @@ const repoName = "Cortex-website";
 const nextConfig: NextConfig = {
   output: "export",
   basePath: isProd ? `/${repoName}` : "",
-  assetPrefix: isProd ? `/${repoName}/` : "",
   trailingSlash: true,
   images: {
     unoptimized: true,

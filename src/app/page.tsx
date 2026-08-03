@@ -14,6 +14,7 @@ import { getFeaturedProjects } from "@/content/projects";
 import { services } from "@/content/services";
 import { reviews } from "@/content/reviews";
 import { stats } from "@/content/stats";
+import { logoImg } from "@/lib/assets";
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
@@ -101,7 +102,7 @@ export default function HomePage() {
             className="mt-16"
           >
             <Image
-              src="/logo.png"
+              src={logoImg}
               alt="Cortex Analytix"
               width={120}
               height={120}

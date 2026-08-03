@@ -3,6 +3,7 @@ import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { Code2, Users, Target, Award } from "lucide-react";
+import { logoImg } from "@/lib/assets";
 
 export const metadata: Metadata = {
   title: "About",
@@ -58,7 +59,7 @@ export default function AboutPage() {
             <ScrollReveal>
               <div className="flex justify-center mb-8">
                 <Image
-                  src="/logo.png"
+                  src={logoImg}
                   alt="Cortex Analytix Logo"
                   width={160}
                   height={160}
