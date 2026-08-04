@@ -10,6 +10,12 @@ import ServiceCard from "@/components/ui/ServiceCard";
 import TestimonialCard from "@/components/ui/TestimonialCard";
 import StatCounter from "@/components/ui/StatCounter";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import AuroraBackground from "@/components/effects/AuroraBackground";
+import FloatingGeometry from "@/components/effects/FloatingGeometry";
+import FloatingParticles from "@/components/effects/FloatingParticles";
+import MagneticButton from "@/components/effects/MagneticButton";
+import GlowingBorder from "@/components/effects/GlowingBorder";
+import PageTransition from "@/components/effects/PageTransition";
 import { getFeaturedProjects } from "@/content/projects";
 import { services } from "@/content/services";
 import { reviews } from "@/content/reviews";
@@ -20,32 +26,27 @@ export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
 
   return (
-    <>
+    <PageTransition>
       {/* ─── HERO SECTION ─── */}
       <section className="relative min-h-screen pt-32 sm:pt-36 md:pt-44 pb-20 flex flex-col justify-center overflow-hidden">
-        {/* Animated background */}
+        {/* Animated background layers */}
         <div className="absolute inset-0 bg-grid" />
-        <div className="absolute inset-0 bg-radial-glow" />
-        <div className="absolute inset-0 bg-radial-glow-purple" />
-
-        {/* Floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-brand-primary/5 rounded-full blur-3xl animate-float" />
-        <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "2s" }}
-        />
-        <div
-          className="absolute top-1/3 right-1/3 w-48 h-48 bg-brand-accent/5 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "4s" }}
-        />
+        <AuroraBackground />
+        <FloatingGeometry />
+        <FloatingParticles count={15} />
 
         <div className="section-container relative z-10 text-center">
           {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8"
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 20,
+              delay: 0.1,
+            }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 animate-badge-float"
           >
             <Sparkles className="w-4 h-4 text-brand-accent" />
             <span className="text-sm text-text-secondary">
@@ -55,23 +56,33 @@ export default function HomePage() {
 
           {/* Heading */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 20,
+              delay: 0.2,
+            }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] max-w-5xl mx-auto"
           >
             Transforming Businesses with{" "}
-            <span className="text-gradient">AI, ERP Solutions</span>
+            <span className="text-gradient-shimmer">AI, ERP Solutions</span>
             <br />
             <span className="text-text-secondary">&</span>{" "}
-            <span className="text-gradient">Modern Software</span>
+            <span className="text-gradient-shimmer">Modern Software</span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 20,
+              delay: 0.4,
+            }}
             className="mt-6 text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
           >
             We craft intelligent solutions — from AI-powered applications and
@@ -83,22 +94,36 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 20,
+              delay: 0.6,
+            }}
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Link href="/projects/" className="btn-primary text-base">
-              View Projects <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link href="/contact/" className="btn-secondary text-base">
-              Book a Consultation
-            </Link>
+            <MagneticButton>
+              <Link href="/projects/" className="btn-primary text-base">
+                View Projects <ArrowRight className="w-4 h-4" />
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link href="/contact/" className="btn-secondary text-base">
+                Book a Consultation
+              </Link>
+            </MagneticButton>
           </motion.div>
 
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 20,
+              delay: 0.8,
+            }}
             className="mt-16"
           >
             <Image
@@ -106,7 +131,7 @@ export default function HomePage() {
               alt="Cortex Analytix"
               width={120}
               height={120}
-              className="mx-auto opacity-40 hover:opacity-70 transition-opacity duration-500"
+              className="mx-auto opacity-40 hover:opacity-70 transition-opacity duration-500 animate-float-gentle"
             />
           </motion.div>
         </div>
@@ -129,8 +154,13 @@ export default function HomePage() {
       </section>
 
       {/* ─── STATS SECTION ─── */}
-      <section className="section border-y border-white/5 bg-surface/30">
-        <div className="section-container">
+      <section className="section relative">
+        {/* Gradient dividers */}
+        <div className="absolute top-0 left-0 right-0 section-divider" />
+        <div className="absolute bottom-0 left-0 right-0 section-divider" />
+        <div className="absolute inset-0 bg-surface/30" />
+
+        <div className="section-container relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, i) => (
               <StatCounter key={stat.label} stat={stat} index={i} />
@@ -140,8 +170,9 @@ export default function HomePage() {
       </section>
 
       {/* ─── FEATURED PROJECTS ─── */}
-      <section className="section">
-        <div className="section-container">
+      <section className="section relative">
+        <FloatingParticles count={8} className="opacity-30" />
+        <div className="section-container relative z-10">
           <SectionHeading
             title="Featured Projects"
             subtitle="Real-world solutions we've built for businesses across healthcare, manufacturing, fashion, and more."
@@ -152,19 +183,22 @@ export default function HomePage() {
             ))}
           </div>
           <ScrollReveal className="text-center mt-12">
-            <Link
-              href="/projects/"
-              className="btn-secondary inline-flex items-center gap-2"
-            >
-              View All Projects <ArrowRight className="w-4 h-4" />
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/projects/"
+                className="btn-secondary inline-flex items-center gap-2"
+              >
+                View All Projects <ArrowRight className="w-4 h-4" />
+              </Link>
+            </MagneticButton>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ─── SERVICES SECTION ─── */}
-      <section className="section bg-surface/20">
+      <section className="section relative bg-surface/20">
         <div className="absolute inset-0 bg-radial-glow opacity-50" />
+        <FloatingParticles count={10} className="opacity-20" />
         <div className="section-container relative z-10">
           <SectionHeading
             title="What We Build"
@@ -176,19 +210,21 @@ export default function HomePage() {
             ))}
           </div>
           <ScrollReveal className="text-center mt-10">
-            <Link
-              href="/services/"
-              className="btn-secondary inline-flex items-center gap-2"
-            >
-              All Services <ArrowRight className="w-4 h-4" />
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/services/"
+                className="btn-secondary inline-flex items-center gap-2"
+              >
+                All Services <ArrowRight className="w-4 h-4" />
+              </Link>
+            </MagneticButton>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ─── TESTIMONIALS SECTION ─── */}
-      <section className="section">
-        <div className="section-container">
+      <section className="section relative">
+        <div className="section-container relative z-10">
           <SectionHeading
             title="Client Stories"
             subtitle="What our partners say about working with Cortex Analytix."
@@ -204,25 +240,32 @@ export default function HomePage() {
       {/* ─── CTA SECTION ─── */}
       <section className="section">
         <div className="section-container">
-          <ScrollReveal>
-            <div className="relative overflow-hidden rounded-2xl p-8 md:p-16 text-center glass-card animate-pulse-glow">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/10" />
-              <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                  Ready to Transform Your Business?
-                </h2>
-                <p className="text-text-secondary text-lg max-w-xl mx-auto mb-8">
-                  Let&apos;s discuss how we can build the perfect solution for
-                  your unique challenges.
-                </p>
-                <Link href="/contact/" className="btn-primary text-base">
-                  Start a Conversation <ArrowRight className="w-4 h-4" />
-                </Link>
+          <ScrollReveal blur>
+            <GlowingBorder borderRadius={20}>
+              <div className="relative overflow-hidden rounded-[20px] p-8 md:p-16 text-center glass-card-elevated">
+                {/* Background accent */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/10" />
+                <FloatingParticles count={6} className="opacity-20" />
+
+                <div className="relative z-10">
+                  <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                    Ready to Transform Your Business?
+                  </h2>
+                  <p className="text-text-secondary text-lg max-w-xl mx-auto mb-8">
+                    Let&apos;s discuss how we can build the perfect solution for
+                    your unique challenges.
+                  </p>
+                  <MagneticButton>
+                    <Link href="/contact/" className="btn-primary text-base">
+                      Start a Conversation <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </MagneticButton>
+                </div>
               </div>
-            </div>
+            </GlowingBorder>
           </ScrollReveal>
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }

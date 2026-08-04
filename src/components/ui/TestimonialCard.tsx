@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import type { Review } from "@/content/reviews";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface TestimonialCardProps {
   review: Review;
@@ -10,36 +11,82 @@ interface TestimonialCardProps {
 }
 
 export default function TestimonialCard({ review, index = 0 }: TestimonialCardProps) {
+  const prefersReduced = useReducedMotion();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        delay: index * 0.1,
+      }}
+      className={!prefersReduced ? "animate-float-gentle" : ""}
+      style={!prefersReduced ? { animationDelay: `${index * 1.5}s` } : {}}
     >
-      <div className="glass-card p-6 h-full flex flex-col">
-        {/* Stars */}
+      <div className="glass-card p-6 h-full flex flex-col relative overflow-hidden group">
+        {/* Decorative quote mark */}
+        <div className="absolute top-4 right-4 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500">
+          <Quote className="w-16 h-16 text-brand-primary" />
+        </div>
+
+        {/* Subtle hover glow */}
+        <div className="absolute -top-12 -right-12 w-32 h-32 bg-brand-primary/0 group-hover:bg-brand-primary/5 rounded-full blur-3xl transition-all duration-500 pointer-events-none" />
+
+        {/* Stars with staggered entrance */}
         <div className="flex items-center gap-0.5 mb-4">
           {Array.from({ length: review.rating }).map((_, i) => (
-            <Star
+            <motion.div
               key={i}
-              className="w-4 h-4 fill-amber-400 text-amber-400"
-            />
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 15,
+                delay: index * 0.1 + i * 0.06,
+              }}
+            >
+              <Star
+                className="w-4 h-4 fill-amber-400 text-amber-400"
+                style={{
+                  filter: "drop-shadow(0 0 4px rgba(251, 191, 36, 0.3))",
+                }}
+              />
+            </motion.div>
           ))}
         </div>
 
         {/* Quote */}
-        <blockquote className="text-sm text-text-secondary leading-relaxed flex-1 mb-6">
+        <blockquote className="relative z-10 text-sm text-text-secondary leading-relaxed flex-1 mb-6">
           &ldquo;{review.quote}&rdquo;
         </blockquote>
 
-        {/* Author */}
-        <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-sm font-bold">
-              {review.name.charAt(0)}
-            </span>
+        {/* Author with animated avatar ring */}
+        <div className="relative z-10 flex items-center gap-3 pt-4 border-t border-white/5">
+          {/* Avatar with rotating gradient ring */}
+          <div className="relative">
+            <div
+              className={`absolute -inset-[2px] rounded-full ${
+                !prefersReduced ? "avatar-ring" : ""
+              }`}
+              style={{
+                background: prefersReduced
+                  ? "linear-gradient(135deg, var(--brand-primary), var(--brand-secondary))"
+                  : undefined,
+              }}
+            />
+            <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
+              <span className="text-white text-sm font-bold">
+                {review.name.charAt(0)}
+              </span>
+            </div>
           </div>
+
           <div>
             <p className="text-sm font-semibold text-text-primary">
               {review.name}

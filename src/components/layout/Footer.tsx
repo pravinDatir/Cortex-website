@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Mail } from "lucide-react";
+import { motion } from "motion/react";
 import { getAssetPath } from "@/lib/utils";
+import MagneticButton from "@/components/effects/MagneticButton";
 
 /* Inline SVG icons for brand logos (removed from lucide-react) */
 function GithubIcon({ size = 18 }: { size?: number }) {
@@ -52,9 +56,19 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-background-secondary">
+    <footer className="relative border-t border-white/5 bg-background-secondary">
+      {/* Aurora gradient divider at the top */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent" />
+      <div className="absolute top-0 left-1/4 right-1/4 h-[1px] blur-sm bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent" />
+
       <div className="section-container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
+        >
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-5">
@@ -77,16 +91,17 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 text-text-tertiary hover:text-brand-primary-light hover:bg-white/10 transition-all duration-200"
-                  aria-label={social.label}
-                >
-                  <social.icon size={18} />
-                </a>
+                <MagneticButton key={social.label} strength={6}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-lg bg-white/5 text-text-tertiary hover:text-brand-primary-light hover:bg-white/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 block"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={18} />
+                  </a>
+                </MagneticButton>
               ))}
             </div>
           </div>
@@ -101,7 +116,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                    className="text-sm text-text-secondary hover:text-text-primary hover:translate-x-1 transition-all duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -120,7 +135,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                    className="text-sm text-text-secondary hover:text-text-primary hover:translate-x-1 transition-all duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -128,16 +143,19 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-text-tertiary">
-            © {new Date().getFullYear()} Cortex Analytix. All rights reserved.
-          </p>
-          <p className="text-xs text-text-tertiary">
-            Insight. Innovation. Impact.
-          </p>
+        {/* Bottom Bar with gradient line */}
+        <div className="mt-12 pt-8 relative">
+          <div className="absolute top-0 left-0 right-0 section-divider" />
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-text-tertiary">
+              © {new Date().getFullYear()} Cortex Analytix. All rights reserved.
+            </p>
+            <p className="text-xs text-text-tertiary">
+              Insight. Innovation. Impact.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
