@@ -13,11 +13,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Cortex Analytix — Insight. Innovation. Impact.",
+    default: "Cortex Analytix — Software for Complex Operations",
     template: "%s | Cortex Analytix",
   },
   description:
-    "We build intelligent software solutions — from AI-powered applications and ERP systems to mobile apps and modern web platforms. Transforming businesses through technology.",
+    "Cortex Analytix builds scalable software platforms for healthcare, diagnostics, manufacturing, and commerce, turning fragmented workflows into connected operations.",
   keywords: [
     "AI Development",
     "ERP Solutions",
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Cortex Analytix",
-    title: "Cortex Analytix — Insight. Innovation. Impact.",
+    title: "Cortex Analytix — Software for Complex Operations",
     description:
-      "We build intelligent software solutions — from AI-powered applications and ERP systems to mobile apps and modern web platforms.",
+      "Scalable software platforms for healthcare, diagnostics, manufacturing, and commerce, built to simplify complex operations.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cortex Analytix — Insight. Innovation. Impact.",
+    title: "Cortex Analytix — Software for Complex Operations",
     description:
-      "We build intelligent software solutions — from AI-powered applications and ERP systems to mobile apps and modern web platforms.",
+      "Scalable software platforms for healthcare, diagnostics, manufacturing, and commerce, built to simplify complex operations.",
   },
   robots: {
     index: true,

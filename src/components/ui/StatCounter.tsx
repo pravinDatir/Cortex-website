@@ -58,7 +58,7 @@ export default function StatCounter({ stat, index = 0 }: StatCounterProps) {
             : {}
         }
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="text-4xl md:text-5xl font-bold text-gradient mb-2"
+        className="mb-[.45rem] text-[2.025rem] font-bold text-gradient md:text-[2.7rem]"
       >
         {displayValue}
         <span className="text-brand-primary-light">{stat.suffix}</span>
@@ -66,7 +66,7 @@ export default function StatCounter({ stat, index = 0 }: StatCounterProps) {
 
       {/* Glowing gradient underline */}
       <div className="relative inline-block">
-        <p className="text-sm text-text-secondary font-medium">{stat.label}</p>
+        <p className="text-[.8rem] font-medium text-text-secondary">{stat.label}</p>
         <motion.div
           initial={{ width: 0, opacity: 0 }}
           animate={
@@ -77,7 +77,7 @@ export default function StatCounter({ stat, index = 0 }: StatCounterProps) {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-full"
           style={{
-            boxShadow: "0 0 8px rgba(59, 130, 246, 0.4)",
+            boxShadow: "0 0 8px rgba(137, 50, 248, 0.4)",
           }}
         />
       </div>

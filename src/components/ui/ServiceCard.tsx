@@ -29,9 +29,10 @@ const iconMap: Record<string, LucideIcon> = {
 interface ServiceCardProps {
   service: Service;
   index?: number;
+  compact?: boolean;
 }
 
-export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
+export default function ServiceCard({ service, index = 0, compact = false }: ServiceCardProps) {
   const Icon = iconMap[service.icon] || Globe;
 
   const featureVariants = {
@@ -72,7 +73,7 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
       className="group"
     >
       <TiltCard maxTilt={4}>
-        <div className="glass-card p-6 h-full flex flex-col relative overflow-hidden">
+        <div className={`glass-card relative flex h-full flex-col overflow-hidden ${compact ? "p-4" : "p-6"}`}>
           {/* Subtle spotlight effect on hover */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full blur-3xl" />
@@ -80,18 +81,18 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
 
           {/* Icon with animated gradient background */}
           <div className="relative z-10">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-all duration-300 group-hover:shadow-[0_0_24px_rgba(59,130,246,0.2)]">
-              <Icon className="w-6 h-6 text-brand-primary-light" />
+            <div className={`${compact ? "mb-3 size-10" : "mb-5 size-12"} flex items-center justify-center rounded-xl bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_24px_rgba(137,50,248,0.2)]`}>
+              <Icon className={`${compact ? "size-5" : "size-6"} text-brand-primary-light`} />
             </div>
           </div>
 
           {/* Title */}
-          <h3 className="relative z-10 text-lg font-semibold text-text-primary mb-2 group-hover:text-brand-primary-light transition-colors duration-300">
+          <h3 className={`relative z-10 font-semibold text-text-primary transition-colors duration-300 group-hover:text-brand-primary-light ${compact ? "mb-1.5 text-base" : "mb-2 text-lg"}`}>
             {service.title}
           </h3>
 
           {/* Description */}
-          <p className="relative z-10 text-sm text-text-secondary leading-relaxed mb-5 flex-1">
+          <p className={`relative z-10 flex-1 leading-relaxed text-text-secondary ${compact ? "mb-3 text-xs" : "mb-5 text-sm"}`}>
             {service.description}
           </p>
 
@@ -101,13 +102,13 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative z-10 space-y-2"
+            className={`relative z-10 ${compact ? "space-y-1.5" : "space-y-2"}`}
           >
             {service.features.map((feature) => (
               <motion.li
                 key={feature}
                 variants={featureItemVariants}
-                className="flex items-center gap-2 text-xs text-text-tertiary"
+                className={`flex items-center gap-2 text-text-tertiary ${compact ? "text-[11px]" : "text-xs"}`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary flex-shrink-0" />
                 {feature}

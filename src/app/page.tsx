@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -16,11 +15,16 @@ import FloatingParticles from "@/components/effects/FloatingParticles";
 import MagneticButton from "@/components/effects/MagneticButton";
 import GlowingBorder from "@/components/effects/GlowingBorder";
 import PageTransition from "@/components/effects/PageTransition";
+// import Scroll3DScene from "@/components/effects/Scroll3DScene";
 import { getFeaturedProjects } from "@/content/projects";
 import { services } from "@/content/services";
 import { reviews } from "@/content/reviews";
 import { stats } from "@/content/stats";
-import { getAssetPath } from "@/lib/utils";
+import CortexMark from "@/components/brand/CortexMark";
+import CapabilityOrbit from "@/components/effects/CapabilityOrbit";
+import TechnologyUniverse from "@/components/effects/TechnologyUniverse";
+import TiltCard from "@/components/effects/TiltCard";
+import ScrollSection from "@/components/ui/ScrollSection";
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
@@ -28,7 +32,7 @@ export default function HomePage() {
   return (
     <PageTransition>
       {/* ─── HERO SECTION ─── */}
-      <section className="relative min-h-screen pt-32 sm:pt-36 md:pt-44 pb-20 flex flex-col justify-center overflow-hidden">
+      <section className="relative isolate flex min-h-[78svh] flex-col justify-center overflow-hidden bg-white pb-12 pt-28 sm:pt-30 md:pb-14 md:pt-32">
         {/* Animated background layers */}
         <div className="absolute inset-0 bg-grid" />
         <AuroraBackground />
@@ -46,11 +50,11 @@ export default function HomePage() {
               damping: 20,
               delay: 0.1,
             }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 animate-badge-float"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#8932f8]/20 bg-[#f6efff] px-3 py-1.5 shadow-sm backdrop-blur-sm animate-badge-float"
           >
             <Sparkles className="w-4 h-4 text-brand-accent" />
             <span className="text-sm text-text-secondary">
-              Building the future of enterprise software
+              A software company for complex business operations
             </span>
           </motion.div>
 
@@ -64,13 +68,12 @@ export default function HomePage() {
               damping: 20,
               delay: 0.2,
             }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] max-w-5xl mx-auto"
+            className="mx-auto max-w-[1000px] text-[clamp(2.125rem,4.6vw,3.75rem)] font-medium leading-[1.08] tracking-[-.045em]"
           >
-            Transforming Businesses with{" "}
-            <span className="text-gradient-shimmer">AI, ERP Solutions</span>
+            Building Intelligent Platforms for{" "}
+            <span className="text-gradient-shimmer">Healthcare, Diagnostics,</span>
             <br />
-            <span className="text-text-secondary">&</span>{" "}
-            <span className="text-gradient-shimmer">Modern Software</span>
+            <span className="text-gradient-shimmer">Manufacturing &amp; Commerce</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -83,11 +86,11 @@ export default function HomePage() {
               damping: 20,
               delay: 0.4,
             }}
-            className="mt-6 text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
+            className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg"
           >
-            We craft intelligent solutions — from AI-powered applications and
-            enterprise platforms to cross-platform mobile apps that drive
-            measurable impact.
+            Cortex Analytix builds scalable software that replaces fragmented
+            workflows with connected operations that are easier to manage,
+            measure, and grow.
           </motion.p>
 
           {/* CTAs */}
@@ -100,7 +103,7 @@ export default function HomePage() {
               damping: 20,
               delay: 0.6,
             }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <MagneticButton>
               <Link href="/projects/" className="btn-primary text-base">
@@ -124,15 +127,9 @@ export default function HomePage() {
               damping: 20,
               delay: 0.8,
             }}
-            className="mt-16"
+            className="mt-12"
           >
-            <Image
-              src={getAssetPath("/logo.png")}
-              alt="Cortex Analytix"
-              width={120}
-              height={120}
-              className="mx-auto opacity-40 hover:opacity-70 transition-opacity duration-500 animate-float-gentle"
-            />
+            <CortexMark size={90} className="mx-auto opacity-80 transition-opacity duration-500 hover:opacity-100 animate-float-gentle" />
           </motion.div>
         </div>
 
@@ -141,9 +138,9 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2"
         >
-          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+          <div className="flex h-10 w-6 justify-center rounded-full border-2 border-black/15 pt-2">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
@@ -153,24 +150,30 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* <Scroll3DScene /> */}
+
       {/* ─── STATS SECTION ─── */}
-      <section className="section relative">
+      <ScrollSection className="section relative m-4 overflow-clip rounded-[clamp(2rem,4vw,4.5rem)] border border-black/[.075] bg-[#f6f1fb] !py-[5.4rem] max-md:m-2.5 max-md:rounded-[2rem] max-md:!py-[2.7rem]">
         {/* Gradient dividers */}
         <div className="absolute top-0 left-0 right-0 section-divider" />
         <div className="absolute bottom-0 left-0 right-0 section-divider" />
         <div className="absolute inset-0 bg-surface/30" />
 
         <div className="section-container relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-2 gap-[1.8rem] md:grid-cols-4 md:gap-[2.7rem]">
             {stats.map((stat, i) => (
-              <StatCounter key={stat.label} stat={stat} index={i} />
+              <TiltCard key={stat.label} maxTilt={5} spotlightSize={135} className="h-full">
+                <div className="h-full rounded-[.9rem] border border-white/65 bg-white/45 p-[1.125rem] shadow-[0_14px_34px_rgba(74,34,120,.08),inset_0_1px_rgba(255,255,255,.9)] backdrop-blur-sm [transform:translateZ(13px)]">
+                  <StatCounter stat={stat} index={i} />
+                </div>
+              </TiltCard>
             ))}
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
       {/* ─── FEATURED PROJECTS ─── */}
-      <section className="section relative">
+      <ScrollSection className="section relative m-4 overflow-clip rounded-[clamp(2rem,4vw,4.5rem)] border border-black/[.075] bg-white max-md:m-2.5 max-md:rounded-[2rem]">
         <FloatingParticles count={8} className="opacity-30" />
         <div className="section-container relative z-10">
           <SectionHeading
@@ -193,23 +196,24 @@ export default function HomePage() {
             </MagneticButton>
           </ScrollReveal>
         </div>
-      </section>
+      </ScrollSection>
 
       {/* ─── SERVICES SECTION ─── */}
-      <section className="section relative bg-surface/20">
+      <ScrollSection className="section relative m-4 overflow-clip rounded-[clamp(2rem,4vw,4.5rem)] border border-black/[.075] bg-[radial-gradient(circle_at_85%_0%,rgba(137,50,248,.13),transparent_35%)] bg-[#faf8fc] !py-[4.5rem] max-md:m-2.5 max-md:rounded-[2rem] max-md:!py-12">
         <div className="absolute inset-0 bg-radial-glow opacity-50" />
         <FloatingParticles count={10} className="opacity-20" />
         <div className="section-container relative z-10">
           <SectionHeading
             title="What We Build"
             subtitle="End-to-end software services — from concept to deployment and beyond."
+            compact
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {services.slice(0, 4).map((service, i) => (
-              <ServiceCard key={service.title} service={service} index={i} />
+              <ServiceCard key={service.title} service={service} index={i} compact />
             ))}
           </div>
-          <ScrollReveal className="text-center mt-10">
+          <ScrollReveal className="mt-8 text-center">
             <MagneticButton>
               <Link
                 href="/services/"
@@ -220,10 +224,14 @@ export default function HomePage() {
             </MagneticButton>
           </ScrollReveal>
         </div>
-      </section>
+      </ScrollSection>
+
+      <TechnologyUniverse />
+
+      <CapabilityOrbit />
 
       {/* ─── TESTIMONIALS SECTION ─── */}
-      <section className="section relative">
+      <ScrollSection revealDirection="right" className="section relative m-4 overflow-clip rounded-[clamp(2rem,4vw,4.5rem)] border border-black/[.075] bg-white max-md:m-2.5 max-md:rounded-[2rem]">
         <div className="section-container relative z-10">
           <SectionHeading
             title="Client Stories"
@@ -235,10 +243,10 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
       {/* ─── CTA SECTION ─── */}
-      <section className="section">
+      <ScrollSection revealBlur className="section">
         <div className="section-container">
           <ScrollReveal blur>
             <GlowingBorder borderRadius={20}>
@@ -265,7 +273,7 @@ export default function HomePage() {
             </GlowingBorder>
           </ScrollReveal>
         </div>
-      </section>
+      </ScrollSection>
     </PageTransition>
   );
 }

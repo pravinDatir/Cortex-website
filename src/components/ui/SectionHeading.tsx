@@ -8,6 +8,7 @@ interface SectionHeadingProps {
   subtitle?: string;
   gradient?: boolean;
   centered?: boolean;
+  compact?: boolean;
 }
 
 export default function SectionHeading({
@@ -15,6 +16,7 @@ export default function SectionHeading({
   subtitle,
   gradient = true,
   centered = true,
+  compact = false,
 }: SectionHeadingProps) {
   const prefersReduced = useReducedMotion();
 
@@ -44,9 +46,9 @@ export default function SectionHeading({
 
   if (prefersReduced) {
     return (
-      <div className={`mb-12 md:mb-16 ${centered ? "text-center" : ""}`}>
+      <div className={`${compact ? "mb-9 md:mb-12" : "mb-12 md:mb-16"} ${centered ? "text-center" : ""}`}>
         <h2
-          className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight ${
+          className={`${compact ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"} font-bold tracking-tight ${
             gradient ? "text-gradient-shimmer" : "text-text-primary"
           }`}
         >
@@ -54,16 +56,16 @@ export default function SectionHeading({
         </h2>
         {/* Decorative separator */}
         <div
-          className={`mt-4 mb-5 flex items-center gap-2 ${
+          className={`${compact ? "mb-4 mt-3" : "mb-5 mt-4"} flex items-center gap-2 ${
             centered ? "justify-center" : ""
           }`}
         >
-          <div className="w-8 h-[2px] bg-gradient-to-r from-transparent to-brand-primary rounded-full" />
+          <div className={`${compact ? "w-6" : "w-8"} h-[2px] rounded-full bg-gradient-to-r from-transparent to-brand-primary`} />
           <div className="w-2 h-2 rounded-full bg-brand-primary/60" />
-          <div className="w-8 h-[2px] bg-gradient-to-l from-transparent to-brand-secondary rounded-full" />
+          <div className={`${compact ? "w-6" : "w-8"} h-[2px] rounded-full bg-gradient-to-l from-transparent to-brand-secondary`} />
         </div>
         {subtitle && (
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className={`${compact ? "text-base" : "text-lg"} mx-auto max-w-2xl leading-relaxed text-text-secondary`}>
             {subtitle}
           </p>
         )}
@@ -77,11 +79,11 @@ export default function SectionHeading({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      className={`mb-12 md:mb-16 ${centered ? "text-center" : ""}`}
+      className={`${compact ? "mb-9 md:mb-12" : "mb-12 md:mb-16"} ${centered ? "text-center" : ""}`}
     >
       <motion.h2
         variants={childVariants}
-        className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight ${
+        className={`${compact ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"} font-bold tracking-tight ${
           gradient ? "text-gradient-shimmer" : "text-text-primary"
         }`}
       >
@@ -91,13 +93,13 @@ export default function SectionHeading({
       {/* Decorative separator */}
       <motion.div
         variants={childVariants}
-        className={`mt-4 mb-5 flex items-center gap-2 ${
+        className={`${compact ? "mb-4 mt-3" : "mb-5 mt-4"} flex items-center gap-2 ${
           centered ? "justify-center" : ""
         }`}
       >
         <motion.div
           initial={{ width: 0 }}
-          whileInView={{ width: 32 }}
+          whileInView={{ width: compact ? 24 : 32 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="h-[2px] bg-gradient-to-r from-transparent to-brand-primary rounded-full"
@@ -111,7 +113,7 @@ export default function SectionHeading({
         />
         <motion.div
           initial={{ width: 0 }}
-          whileInView={{ width: 32 }}
+          whileInView={{ width: compact ? 24 : 32 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="h-[2px] bg-gradient-to-l from-transparent to-brand-secondary rounded-full"
@@ -121,7 +123,7 @@ export default function SectionHeading({
       {subtitle && (
         <motion.p
           variants={childVariants}
-          className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed"
+          className={`${compact ? "text-base" : "text-lg"} mx-auto max-w-2xl leading-relaxed text-text-secondary`}
         >
           {subtitle}
         </motion.p>

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/content/projects";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { ArrowLeft, ExternalLink, GitFork, Clock, Layers } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ExternalLink, GitFork, Clock, Layers } from "lucide-react";
+import ScrollSection from "@/components/ui/ScrollSection";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -60,8 +61,8 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <div className="pt-28 md:pt-32">
-      <section className="section">
+    <div className="pt-20 md:pt-24">
+      <ScrollSection className="section !pt-6 md:!pt-8">
         <div className="section-container max-w-4xl">
           {/* Back Link */}
           <ScrollReveal>
@@ -84,7 +85,7 @@ export default async function ProjectDetailPage({
               >
                 {categoryLabels[project.category] || project.category}
               </span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight">
+              <h1 className="text-[clamp(1.6rem,3.4vw,2.55rem)] font-bold text-text-primary tracking-tight">
                 {project.title}
               </h1>
               <p className="mt-4 text-lg text-text-secondary leading-relaxed">
@@ -96,13 +97,13 @@ export default async function ProjectDetailPage({
           {/* Meta Info */}
           <ScrollReveal delay={0.2}>
             <div className="flex flex-wrap gap-4 mb-10">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/5 hover:border-brand-primary/20 transition-colors">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-black/[.035] border border-black/5 hover:border-brand-primary/20 transition-colors">
                 <Clock className="w-4 h-4 text-brand-primary-light" />
                 <span className="text-sm text-text-secondary">
                   {project.duration}
                 </span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/5 hover:border-brand-primary/20 transition-colors">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-black/[.035] border border-black/5 hover:border-brand-primary/20 transition-colors">
                 <Layers className="w-4 h-4 text-brand-primary-light" />
                 <span className="text-sm text-text-secondary">
                   {project.technologies.length} Technologies
@@ -120,7 +121,7 @@ export default async function ProjectDetailPage({
                   <div className="device-mockup-dot" />
                   <div className="device-mockup-dot" />
                   <div className="device-mockup-dot" />
-                  <div className="flex-1 ml-4 h-6 rounded-md bg-white/5 max-w-xs" />
+                  <div className="flex-1 ml-4 h-6 rounded-md bg-black/[.035] max-w-xs" />
                 </div>
                 {/* Screenshot */}
                 <div className="relative h-64 sm:h-96 w-full overflow-hidden bg-surface">
@@ -133,6 +134,23 @@ export default async function ProjectDetailPage({
                   />
                   {/* Subtle reflection overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* Verified platform scale */}
+          {project.highlights && (
+            <ScrollReveal delay={0.1} blur>
+              <div className="mb-10">
+                <h3 className="mb-4 text-lg font-semibold text-text-primary">{project.highlightsTitle ?? "Platform Scale"}</h3>
+                <div className={`grid grid-cols-2 gap-3 ${project.highlights.length === 4 ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
+                  {project.highlights.map((highlight) => (
+                    <div key={highlight.label} className="rounded-xl border border-brand-primary/10 bg-brand-primary/[.035] p-4 text-center shadow-[inset_0_1px_rgba(255,255,255,.8)]">
+                      <p className="text-2xl font-bold text-gradient md:text-3xl">{highlight.value}</p>
+                      <p className="mt-1 text-xs leading-snug text-text-secondary">{highlight.label}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </ScrollReveal>
@@ -164,6 +182,23 @@ export default async function ProjectDetailPage({
             </ScrollReveal>
           </div>
 
+          {/* Live platform capabilities */}
+          {project.capabilities && (
+            <ScrollReveal delay={0.25}>
+              <div className="mb-10 rounded-2xl border border-black/[.065] bg-white/70 p-5 shadow-[0_18px_48px_rgba(49,21,87,.06)] md:p-6">
+                <h3 className="mb-4 text-lg font-semibold text-text-primary">{project.capabilitiesTitle ?? "Live Platform Capabilities"}</h3>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {project.capabilities.map((capability) => (
+                    <div key={capability} className="flex items-start gap-2.5 rounded-xl bg-black/[.025] p-3">
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand-primary-light" />
+                      <p className="text-sm leading-relaxed text-text-secondary">{capability}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          )}
+
           {/* Technologies */}
           <ScrollReveal delay={0.3}>
             <div className="mb-10">
@@ -174,7 +209,7 @@ export default async function ProjectDetailPage({
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-4 py-2 rounded-lg bg-white/5 border border-white/5 text-sm text-text-secondary hover:text-text-primary hover:border-brand-primary/30 hover:bg-brand-primary/5 hover:shadow-[0_0_12px_rgba(59,130,246,0.1)] transition-all duration-200"
+                    className="px-4 py-2 rounded-lg bg-black/[.035] border border-black/5 text-sm text-text-secondary hover:text-text-primary hover:border-brand-primary/30 hover:bg-brand-primary/5 hover:shadow-[0_0_12px_rgba(137,50,248,0.1)] transition-all duration-200"
                   >
                     {tech}
                   </span>
@@ -213,7 +248,7 @@ export default async function ProjectDetailPage({
             </ScrollReveal>
           )}
         </div>
-      </section>
+      </ScrollSection>
     </div>
   );
 }

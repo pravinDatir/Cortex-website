@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { motion } from "motion/react";
-import { getAssetPath } from "@/lib/utils";
 import MagneticButton from "@/components/effects/MagneticButton";
+import CortexMark from "@/components/brand/CortexMark";
 
 /* Inline SVG icons for brand logos (removed from lucide-react) */
 function GithubIcon({ size = 18 }: { size?: number }) {
@@ -56,35 +55,45 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 bg-background-secondary">
+    <footer className="relative mt-4 overflow-hidden rounded-t-[3rem] border-t border-white/10 bg-[#0b0610] text-white [&_.text-text-primary]:text-white [&_.text-text-secondary]:text-white/65 [&_.text-text-tertiary]:text-white/45">
       {/* Aurora gradient divider at the top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent" />
       <div className="absolute top-0 left-1/4 right-1/4 h-[1px] blur-sm bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent" />
 
-      <div className="section-container py-16">
+      <div className="section-container pt-6">
+        <motion.div
+          initial={{ opacity: 0, y: 35, scale: .97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          className="relative mb-12 overflow-hidden rounded-[1.75rem] border border-white/15 bg-[radial-gradient(circle_at_75%_20%,rgba(177,90,255,.46),transparent_32%),linear-gradient(120deg,#27103f,#111)] p-5 shadow-2xl md:p-9"
+        >
+          <div className="absolute -right-12 -top-16 size-48 rounded-[42%] border-[14px] border-[#8932f8]/35 shadow-[0_0_52px_rgba(137,50,248,.5)] [transform:rotateX(62deg)_rotateY(-18deg)]" />
+          <div className="relative z-10 max-w-2xl">
+            <h2 className="text-2xl font-medium tracking-[-.04em] text-white md:text-4xl">Ready to Transform Your Business?</h2>
+            <p className="mt-3 text-sm text-white/65">Let&apos;s discuss how we can build the perfect solution for your unique challenges.</p>
+            <Link href="/contact/" className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-semibold text-[#0b0610] transition-transform hover:-translate-y-1">
+              Start a Conversation <ArrowRight className="size-3.5" />
+            </Link>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 80, damping: 20 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4"
         >
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-5">
-              <Image
-                src={getAssetPath("/logo.png")}
-                alt="Cortex Analytix"
-                width={40}
-                height={40}
-                className="rounded-lg"
-              />
+            <Link href="/" className="mb-4 flex items-center gap-2.5">
+              <span className="rounded-lg bg-white p-1"><CortexMark size={32} /></span>
               <div>
-                <span className="text-lg font-bold text-text-primary">Cortex </span>
-                <span className="text-lg font-bold text-gradient">Analytix</span>
+                <span className="text-base font-bold text-text-primary">Cortex </span>
+                <span className="text-base font-bold text-gradient">Analytix</span>
               </div>
             </Link>
-            <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">
+            <p className="mb-4 max-w-md text-xs leading-relaxed text-text-secondary">
               Transforming businesses through intelligent software solutions.
               We build AI-powered applications, ERP systems, mobile apps, and
               modern web platforms that drive real impact.
@@ -96,10 +105,10 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 rounded-lg bg-white/5 text-text-tertiary hover:text-brand-primary-light hover:bg-white/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 block"
+                    className="block rounded-lg bg-black/[.035] p-2 text-text-tertiary transition-all duration-300 hover:bg-black/5 hover:text-brand-primary-light hover:shadow-[0_0_20px_rgba(137,50,248,0.15)]"
                     aria-label={social.label}
                   >
-                    <social.icon size={18} />
+                    <social.icon size={15} />
                   </a>
                 </MagneticButton>
               ))}
@@ -108,15 +117,15 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-primary">
               Company
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-text-primary hover:translate-x-1 transition-all duration-200 inline-block"
+                    className="inline-block text-xs text-text-secondary transition-all duration-200 hover:translate-x-1 hover:text-text-primary"
                   >
                     {link.label}
                   </Link>
@@ -127,15 +136,15 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h3 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-primary">
               Services
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-text-primary hover:translate-x-1 transition-all duration-200 inline-block"
+                    className="inline-block text-xs text-text-secondary transition-all duration-200 hover:translate-x-1 hover:text-text-primary"
                   >
                     {link.label}
                   </Link>
@@ -146,7 +155,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom Bar with gradient line */}
-        <div className="mt-12 pt-8 relative">
+        <div className="relative mt-8 pb-5 pt-5">
           <div className="absolute top-0 left-0 right-0 section-divider" />
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-text-tertiary">
@@ -157,6 +166,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
+        <div className="overflow-hidden border-t border-white/10 py-3 text-center text-[clamp(1.9rem,6.4vw,5.75rem)] font-semibold leading-none tracking-[-.075em] text-white/[.045]">CORTEX ANALYTIX</div>
       </div>
     </footer>
   );

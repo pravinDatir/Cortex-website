@@ -68,7 +68,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   initial={false}
-                  className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
+                  className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-black/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
                 >
                   <ArrowUpRight className="w-5 h-5 text-white" />
                 </motion.div>
@@ -99,13 +99,13 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 {project.technologies.slice(0, 4).map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs px-2.5 py-1 rounded-md bg-white/5 text-text-tertiary border border-white/5 hover:border-brand-primary/20 hover:text-text-secondary transition-all duration-200"
+                    className="text-xs px-2.5 py-1 rounded-md bg-black/[.035] text-text-tertiary border border-black/5 hover:border-brand-primary/20 hover:text-text-secondary transition-all duration-200"
                   >
                     {tech}
                   </span>
                 ))}
                 {project.technologies.length > 4 && (
-                  <span className="text-xs px-2.5 py-1 rounded-md bg-white/5 text-text-tertiary border border-white/5">
+                  <span className="text-xs px-2.5 py-1 rounded-md bg-black/[.035] text-text-tertiary border border-black/5">
                     +{project.technologies.length - 4}
                   </span>
                 )}

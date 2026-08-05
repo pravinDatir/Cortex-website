@@ -2,11 +2,12 @@
 
 import { useState, FormEvent } from "react";
 import { motion } from "motion/react";
-import SectionHeading from "@/components/ui/SectionHeading";
+import PremiumPageHero from "@/components/ui/PremiumPageHero";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import MagneticButton from "@/components/effects/MagneticButton";
 import FloatingParticles from "@/components/effects/FloatingParticles";
 import PageTransition from "@/components/effects/PageTransition";
+import ScrollSection from "@/components/ui/ScrollSection";
 import {
   Send,
   Mail,
@@ -30,15 +31,16 @@ export default function ContactPage() {
   };
 
   const inputClasses =
-    "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text-primary text-sm placeholder-text-tertiary focus:outline-none focus:border-brand-primary/50 focus:ring-1 focus:ring-brand-primary/30 focus:shadow-[0_0_20px_rgba(59,130,246,0.08)] transition-all duration-300";
+    "w-full px-4 py-3 rounded-xl bg-black/[.035] border border-black/10 text-text-primary text-sm placeholder-text-tertiary focus:outline-none focus:border-brand-primary/50 focus:ring-1 focus:ring-brand-primary/30 focus:shadow-[0_0_20px_rgba(137,50,248,0.08)] transition-all duration-300";
 
   return (
     <PageTransition>
-      <div className="pt-28 md:pt-32">
-        <section className="section relative">
+      <div className="pt-20 md:pt-24">
+        <ScrollSection className="section relative !pt-6 md:!pt-8">
           <FloatingParticles count={8} className="opacity-15" />
           <div className="section-container relative z-10">
-            <SectionHeading
+            <PremiumPageHero
+              variant="contact"
               title="Get in Touch"
               subtitle="Have a project in mind? Let's discuss how we can help."
             />
@@ -56,7 +58,7 @@ export default function ContactPage() {
                     </h3>
                     <div className="space-y-5">
                       <div className="flex items-start gap-3 group">
-                        <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_16px_rgba(59,130,246,0.15)] transition-all duration-300">
+                        <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_16px_rgba(137,50,248,0.15)] transition-all duration-300">
                           <Mail className="w-5 h-5 text-brand-primary-light" />
                         </div>
                         <div>
@@ -72,7 +74,7 @@ export default function ContactPage() {
                         </div>
                       </div>
                       <div className="flex items-start gap-3 group">
-                        <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_16px_rgba(59,130,246,0.15)] transition-all duration-300">
+                        <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_16px_rgba(137,50,248,0.15)] transition-all duration-300">
                           <Phone className="w-5 h-5 text-brand-primary-light" />
                         </div>
                         <div>
@@ -85,7 +87,7 @@ export default function ContactPage() {
                         </div>
                       </div>
                       <div className="flex items-start gap-3 group">
-                        <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_16px_rgba(59,130,246,0.15)] transition-all duration-300">
+                        <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_16px_rgba(137,50,248,0.15)] transition-all duration-300">
                           <MapPin className="w-5 h-5 text-brand-primary-light" />
                         </div>
                         <div>
@@ -293,7 +295,7 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-        </section>
+        </ScrollSection>
       </div>
     </PageTransition>
   );

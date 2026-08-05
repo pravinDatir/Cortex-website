@@ -11,6 +11,10 @@ export interface Project {
   featured: boolean;
   liveUrl?: string;
   githubUrl?: string;
+  highlights?: { value: string; label: string }[];
+  highlightsTitle?: string;
+  capabilities?: string[];
+  capabilitiesTitle?: string;
 }
 
 export const projects: Project[] = [
@@ -28,21 +32,58 @@ export const projects: Project[] = [
     duration: "6 months",
     thumbnail: "/projects/erp-thumb.png",
     featured: true,
+    highlightsTitle: "Solution Highlights",
+    highlights: [
+      { value: "BMR/BPR", label: "Digital Batch Record Workflows" },
+      { value: "Role-Based", label: "Department & User Access" },
+      { value: "Real-Time", label: "Inventory & Material Tracking" },
+      { value: "Audit-Ready", label: "Compliance Documentation" },
+    ],
+    capabilitiesTitle: "ERP Platform Capabilities",
+    capabilities: [
+      "Configurable BMR and BPR templates for pharmaceutical production workflows",
+      "Role-based dashboards tailored to manufacturing, inventory, quality, and administration teams",
+      "Batch-level material issue, consumption, reconciliation, and production record management",
+      "Real-time inventory visibility across raw materials, packaging materials, and finished goods",
+      "Structured audit trails for operational changes and compliance review",
+      "Automated PDF generation for controlled batch and compliance documentation",
+      "Centralized master data for products, materials, users, and manufacturing configurations",
+      "Configurable interface theming for organization and user preferences",
+    ],
   },
   {
     slug: "biogenix-platform",
-    title: "Biogenix — B2B/B2C E-Commerce Platform",
-    category: "web",
+    title: "Biogenix — Diagnostics Commerce & Procurement Platform",
+    category: "ecommerce",
     description:
-      "A comprehensive Laravel-based enterprise web application for Biogenix Inc. featuring B2B/B2C order management, product cataloging, and automated Proforma Invoice (PI) generation.",
+      "A nationwide diagnostics commerce and procurement platform for laboratories, hospitals, institutions, distributors, and healthcare buyers — combining product discovery, B2B/B2C access, checkout, quotations, PI requests, and partner support.",
     problem:
-      "Biogenix needed a unified platform to serve both business and retail customers — with differentiated pricing tiers, automated invoice generation, and role-based access for admin, B2B, and B2C portals.",
+      "Biogenix serves a large diagnostic network across India with hundreds of products spanning test kits, reagents, instruments, and analyzers. Its customers needed one reliable digital workspace to search technical products, compare pack options and pricing, complete retail purchases, and manage institution-focused procurement workflows.",
     solution:
-      "Developed a full-stack Laravel 12 application with specialized B2B and B2C user portals, dynamic pricing management, automated PI generation with PDF creation, inventory & category management, RBAC, and real-time email notifications.",
+      "Built a unified platform around the live Biogenix catalog, with multi-filter product search, SKU and pack-size details, GST-aware cart and checkout, branded quotation PDF generation, Proforma Invoice requests, B2B/B2C onboarding, meeting booking, English/Hindi access, and a searchable nationwide distributor network.",
     technologies: ["Laravel 12", "PHP 8.2", "Tailwind CSS v4", "Vite", "MySQL", "Laravel Fortify", "DOMPDF"],
     duration: "4 months",
     thumbnail: "/projects/biogenix-thumb.png",
     featured: true,
+    liveUrl: "https://biogenix.in/",
+    highlights: [
+      { value: "10,000+", label: "Laboratories & Hospitals Served" },
+      { value: "18+", label: "Years in Diagnostics" },
+      { value: "500+", label: "Products & Instruments" },
+      { value: "650+", label: "Channel & Distributor Partners" },
+      { value: "150+", label: "Institutional Clients" },
+      { value: "50M+", label: "Test Kits Produced Annually" },
+    ],
+    capabilities: [
+      "Searchable diagnostics catalog spanning nine core product categories",
+      "Product discovery by SKU, name, application, brand, category, and price",
+      "Dedicated B2B and B2C registration and account workflows",
+      "GST-aware cart, checkout, pack-size selection, and order handling",
+      "Branded quotation PDF generation and Proforma Invoice requests",
+      "Nationwide authorized distributor search with regional support access",
+      "Meeting booking, procurement assistance, and customer support journeys",
+      "English and Hindi platform navigation for broader customer accessibility",
+    ],
   },
   {
     slug: "optimus-cgm-app",
@@ -58,6 +99,24 @@ export const projects: Project[] = [
     duration: "5 months",
     thumbnail: "/projects/cgm-app-thumb.png",
     featured: true,
+    highlightsTitle: "Application Highlights",
+    highlights: [
+      { value: "3 Roles", label: "Patient, Doctor & Admin Workspaces" },
+      { value: "Real-Time", label: "Glucose Monitoring & Charts" },
+      { value: "Offline-First", label: "Resilient Reading Access" },
+      { value: "Cross-Platform", label: "Unified Mobile Experience" },
+    ],
+    capabilitiesTitle: "Mobile Platform Capabilities",
+    capabilities: [
+      "Role-based onboarding and workspaces for patients, doctors, and administrators",
+      "Real-time glucose dashboards with interactive trend and range visualizations",
+      "Meal, activity, and health-event logging for contextual glucose analysis",
+      "AI-style coaching summaries that translate glucose patterns into clear guidance",
+      "Native CGM sensor SDK bridge for device discovery, pairing, and reading synchronization",
+      "Firebase-powered notifications for readings, reminders, and important events",
+      "Offline-first caching so recent glucose information remains available without connectivity",
+      "Secure API integration with the broader Optimus CGM healthcare platform",
+    ],
   },
   {
     slug: "cgm-website",
@@ -73,6 +132,22 @@ export const projects: Project[] = [
     duration: "3 months",
     thumbnail: "/projects/cgm-web-thumb.png",
     featured: false,
+    highlightsTitle: "Portal Highlights",
+    highlights: [
+      { value: "Role-Based", label: "Provider & Admin Access" },
+      { value: "Trend Views", label: "Glucose Pattern Analysis" },
+      { value: "Reports", label: "Clinical Data Summaries" },
+      { value: "API-Connected", label: "Shared Platform Data" },
+    ],
+    capabilitiesTitle: "Web Portal Capabilities",
+    capabilities: [
+      "Patient directory and profile management for healthcare teams",
+      "Responsive glucose dashboards for reviewing readings, ranges, and trends",
+      "Role-based access for providers, administrators, and operational users",
+      "Report workflows for clinical review and longitudinal glucose analysis",
+      "User and platform configuration tools for administrative operations",
+      "Shared backend integration with the Optimus CGM mobile application",
+    ],
   },
   {
     slug: "labelsr-fashion",
@@ -89,6 +164,24 @@ export const projects: Project[] = [
     thumbnail: "/projects/labelsr-thumb.png",
     featured: true,
     liveUrl: "https://www.labelsr.com/",
+    highlightsTitle: "Storefront Highlights",
+    highlights: [
+      { value: "Responsive", label: "Mobile & Desktop Shopping" },
+      { value: "Collection-Led", label: "Curated Product Discovery" },
+      { value: "Integrated", label: "Cart & Checkout Experience" },
+      { value: "Gift Cards", label: "Flexible Commerce Features" },
+    ],
+    capabilitiesTitle: "Commerce Experience Capabilities",
+    capabilities: [
+      "Collection-led navigation for ethnic wear, seasonal edits, and curated launches",
+      "Category-based product discovery across suit sets, kurtas, dresses, co-ords, and tops",
+      "Responsive product pages designed for visual browsing on mobile and desktop",
+      "Wishlist functionality for saving and returning to preferred styles",
+      "Integrated cart, checkout, payment, and order journeys",
+      "Gift card and promotional sale experiences for customer acquisition and retention",
+      "Search-friendly content structure supporting product and collection discoverability",
+      "Brand-aligned visual presentation that preserves Label SR's premium aesthetic",
+    ],
   },
 ];
 

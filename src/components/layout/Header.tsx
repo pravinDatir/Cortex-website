@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { getAssetPath } from "@/lib/utils";
+import CortexMark from "@/components/brand/CortexMark";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -28,11 +27,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href.replace(/\/$/, ""));
@@ -43,10 +37,10 @@ export default function Header() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500 bg-background/80 backdrop-blur-xl border-b ${
+      className={`fixed inset-x-3 top-3 z-50 mx-auto w-auto max-w-[1320px] rounded-[999px] border bg-white/90 shadow-[0_18px_55px_rgba(59,35,91,.1)] backdrop-blur-xl transition-all duration-500 max-md:rounded-3xl ${
         scrolled
-          ? "border-white/10 shadow-lg shadow-black/50"
-          : "border-white/5"
+          ? "border-black/10 shadow-lg shadow-black/50"
+          : "border-black/5"
       }`}
     >
       <nav className="section-container">
@@ -54,13 +48,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <Image
-                src={getAssetPath("/logo.png")}
-                alt="Cortex Analytix"
-                width={44}
-                height={44}
-                className="rounded-lg transition-transform duration-300 group-hover:scale-105"
-              />
+              <CortexMark className="transition-transform duration-300 group-hover:scale-105" />
               {/* Subtle glow on hover */}
               <div className="absolute inset-0 rounded-lg bg-brand-primary/0 group-hover:bg-brand-primary/10 blur-xl transition-all duration-500" />
             </div>
@@ -75,7 +63,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -83,7 +71,7 @@ export default function Header() {
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                   isActive(link.href)
                     ? "text-text-primary"
-                    : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                    : "text-text-secondary hover:text-text-primary hover:bg-black/[.035]"
                 }`}
               >
                 {link.label}
@@ -91,7 +79,7 @@ export default function Header() {
                 {isActive(link.href) && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute inset-0 bg-white/5 rounded-lg -z-10"
+                    className="absolute inset-0 bg-black/[.035] rounded-lg -z-10"
                     transition={{
                       type: "spring",
                       stiffness: 200,
@@ -103,7 +91,7 @@ export default function Header() {
             ))}
             <Link
               href="/contact/"
-              className="ml-4 btn-primary text-sm !py-2 !px-5"
+              className="ml-4 whitespace-nowrap btn-primary text-sm !py-2 !px-5"
             >
               Get in Touch
             </Link>
@@ -112,7 +100,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-text-secondary hover:text-text-primary rounded-lg hover:bg-white/5 transition-colors"
+            className="p-2 text-text-secondary transition-colors hover:bg-black/[.035] hover:text-text-primary lg:hidden rounded-lg"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -127,9 +115,9 @@ export default function Header() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden"
+              className="overflow-hidden lg:hidden"
             >
-              <div className="flex flex-col gap-1 pt-2 pb-6 border-t border-white/5">
+              <div className="flex flex-col gap-1 pt-2 pb-6 border-t border-black/5">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
@@ -142,8 +130,8 @@ export default function Header() {
                       onClick={() => setIsOpen(false)}
                       className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors block ${
                         isActive(link.href)
-                          ? "text-text-primary bg-white/5"
-                          : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                          ? "text-text-primary bg-black/[.035]"
+                          : "text-text-secondary hover:text-text-primary hover:bg-black/[.035]"
                       }`}
                     >
                       {link.label}

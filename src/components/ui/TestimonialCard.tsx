@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Star, Quote } from "lucide-react";
 import type { Review } from "@/content/reviews";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import TiltCard from "@/components/effects/TiltCard";
 
 interface TestimonialCardProps {
   review: Review;
@@ -27,7 +28,8 @@ export default function TestimonialCard({ review, index = 0 }: TestimonialCardPr
       className={!prefersReduced ? "animate-float-gentle" : ""}
       style={!prefersReduced ? { animationDelay: `${index * 1.5}s` } : {}}
     >
-      <div className="glass-card p-6 h-full flex flex-col relative overflow-hidden group">
+      <TiltCard maxTilt={4} spotlightSize={210} className="h-full">
+      <div className="glass-card group relative flex h-full flex-col overflow-hidden p-6 shadow-[0_18px_45px_rgba(49,21,87,.08)] [transform:translateZ(0)]">
         {/* Decorative quote mark */}
         <div className="absolute top-4 right-4 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500">
           <Quote className="w-16 h-16 text-brand-primary" />
@@ -67,7 +69,7 @@ export default function TestimonialCard({ review, index = 0 }: TestimonialCardPr
         </blockquote>
 
         {/* Author with animated avatar ring */}
-        <div className="relative z-10 flex items-center gap-3 pt-4 border-t border-white/5">
+        <div className="relative z-10 flex items-center gap-3 pt-4 border-t border-black/5">
           {/* Avatar with rotating gradient ring */}
           <div className="relative">
             <div
@@ -97,6 +99,7 @@ export default function TestimonialCard({ review, index = 0 }: TestimonialCardPr
           </div>
         </div>
       </div>
+      </TiltCard>
     </motion.div>
   );
 }

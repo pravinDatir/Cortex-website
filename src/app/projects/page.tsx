@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import SectionHeading from "@/components/ui/SectionHeading";
+import PremiumPageHero from "@/components/ui/PremiumPageHero";
 import ProjectCard from "@/components/ui/ProjectCard";
 import FloatingParticles from "@/components/effects/FloatingParticles";
 import PageTransition from "@/components/effects/PageTransition";
 import { projects, type Project } from "@/content/projects";
+import ScrollSection from "@/components/ui/ScrollSection";
 
 type Category = "all" | Project["category"];
 
@@ -28,11 +29,12 @@ export default function ProjectsPage() {
 
   return (
     <PageTransition>
-      <div className="pt-28 md:pt-32">
-        <section className="section relative">
+      <div className="pt-20 md:pt-24">
+        <ScrollSection className="section relative !pt-6 md:!pt-8">
           <FloatingParticles count={8} className="opacity-15" />
           <div className="section-container relative z-10">
-            <SectionHeading
+            <PremiumPageHero
+              variant="projects"
               title="Our Projects"
               subtitle="Explore our portfolio of real-world solutions across industries."
             />
@@ -46,7 +48,7 @@ export default function ProjectsPage() {
                   className={`relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     activeCategory === cat.value
                       ? "text-white"
-                      : "bg-white/5 text-text-secondary hover:text-text-primary hover:bg-white/10 border border-white/5"
+                      : "bg-black/[.035] text-text-secondary hover:text-text-primary hover:bg-black/5 border border-black/5"
                   }`}
                 >
                   {/* Animated active background */}
@@ -55,7 +57,7 @@ export default function ProjectsPage() {
                       layoutId="project-filter-indicator"
                       className="absolute inset-0 bg-brand-primary rounded-full -z-10"
                       style={{
-                        boxShadow: "0 4px 20px rgba(59, 130, 246, 0.3)",
+                        boxShadow: "0 4px 20px rgba(137, 50, 248, 0.3)",
                       }}
                       transition={{
                         type: "spring",
@@ -100,7 +102,7 @@ export default function ProjectsPage() {
               </p>
             )}
           </div>
-        </section>
+        </ScrollSection>
       </div>
     </PageTransition>
   );

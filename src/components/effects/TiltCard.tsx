@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, ReactNode } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionTemplate, useMotionValue, useSpring } from "motion/react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface TiltCardProps {
@@ -47,6 +47,7 @@ export default function TiltCard({
     stiffness: 200,
     damping: 30,
   });
+  const spotlightBackground = useMotionTemplate`radial-gradient(${spotlightSize}px circle at ${springSpotlightX}px ${springSpotlightY}px, rgba(137, 50, 248, 0.1), transparent 62%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (prefersReduced || !cardRef.current) return;
@@ -105,10 +106,7 @@ export default function TiltCard({
           className="absolute inset-0 rounded-2xl pointer-events-none z-10"
           style={{
             opacity: springSpotlightOpacity,
-            background: `radial-gradient(${spotlightSize}px circle at ${0}px ${0}px, rgba(59, 130, 246, 0.08), transparent 60%)`,
-            // Use CSS variables for dynamic positioning
-            ["--spotlight-x" as string]: springSpotlightX,
-            ["--spotlight-y" as string]: springSpotlightY,
+            background: spotlightBackground,
           }}
         />
       </motion.div>

@@ -1,14 +1,33 @@
 "use client";
 
-import Image from "next/image";
+import type { ComponentType, CSSProperties } from "react";
 import { motion } from "motion/react";
+import { FaAws } from "react-icons/fa6";
+import {
+  SiDocker,
+  SiFirebase,
+  SiFlutter,
+  SiGithubactions,
+  SiLaravel,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPhp,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import TiltCard from "@/components/effects/TiltCard";
 import FloatingParticles from "@/components/effects/FloatingParticles";
 import PageTransition from "@/components/effects/PageTransition";
-import { Code2, Users, Target, Award, type LucideIcon } from "lucide-react";
-import { getAssetPath } from "@/lib/utils";
+import { Code2, Users, Target, Award } from "lucide-react";
+import CortexMark from "@/components/brand/CortexMark";
+import PremiumPageHero from "@/components/ui/PremiumPageHero";
+import ScrollSection from "@/components/ui/ScrollSection";
 
 const values = [
   {
@@ -37,39 +56,48 @@ const values = [
   },
 ];
 
-const techStack = [
-  "React", "Next.js", "Flutter", "Laravel", "Node.js",
-  "Python", "PHP", "TypeScript", "Tailwind CSS",
-  "MySQL", "PostgreSQL", "Firebase",
-  "AWS", "Docker", "GitHub Actions",
+type TechIcon = ComponentType<{ className?: string; style?: CSSProperties }>;
+type TechStackItem = { name: string; icon: TechIcon; color: string };
+
+const techStack: TechStackItem[] = [
+  { name: "React", icon: SiReact, color: "#087EA4" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#111111" },
+  { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+  { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
+  { name: "Python", icon: SiPython, color: "#3776AB" },
+  { name: "PHP", icon: SiPhp, color: "#777BB4" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+  { name: "Firebase", icon: SiFirebase, color: "#F57C00" },
+  { name: "AWS", icon: FaAws, color: "#FF9900" },
+  { name: "Docker", icon: SiDocker, color: "#2496ED" },
+  { name: "GitHub Actions", icon: SiGithubactions, color: "#2088FF" },
 ];
 
 export default function AboutPage() {
   return (
     <PageTransition>
-      <div className="pt-28 md:pt-32">
+      <div className="pt-20 md:pt-24">
         {/* Hero */}
-        <section className="section relative">
+        <ScrollSection className="section relative !pt-6 md:!pt-8">
           <FloatingParticles count={8} className="opacity-20" />
           <div className="section-container relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <SectionHeading
+            <div className="text-center">
+              <PremiumPageHero
+                variant="about"
                 title="About Cortex Analytix"
                 subtitle="We're a technology consulting firm that transforms business challenges into intelligent software solutions."
               />
               <ScrollReveal blur>
-                <div className="flex justify-center mb-8">
-                  <Image
-                    src={getAssetPath("/logo.png")}
-                    alt="Cortex Analytix Logo"
-                    width={160}
-                    height={160}
-                    className="opacity-80 animate-float-gentle"
-                  />
+                <div className="mb-8 flex justify-center">
+                  <CortexMark size={160} className="opacity-90 animate-float-gentle" />
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={0.2}>
-                <p className="text-text-secondary leading-relaxed text-lg">
+                <p className="mx-auto max-w-3xl text-lg leading-relaxed text-text-secondary">
                   Founded with the vision of bridging the gap between cutting-edge
                   technology and real-world business needs, Cortex Analytix
                   specializes in building AI-powered applications, enterprise
@@ -84,10 +112,10 @@ export default function AboutPage() {
               </ScrollReveal>
             </div>
           </div>
-        </section>
+        </ScrollSection>
 
         {/* Values */}
-        <section className="section relative bg-surface/20">
+        <ScrollSection revealDirection="left" className="section relative bg-surface/20">
           <div className="section-container relative z-10">
             <SectionHeading
               title="Our Values"
@@ -101,7 +129,7 @@ export default function AboutPage() {
                       {/* Hover glow */}
                       <div className="absolute top-0 right-0 w-24 h-24 bg-brand-primary/0 group-hover:bg-brand-primary/5 rounded-full blur-3xl transition-all duration-500 pointer-events-none" />
 
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all duration-300">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 flex items-center justify-center flex-shrink-0 group-hover:shadow-[0_0_20px_rgba(137,50,248,0.2)] transition-all duration-300">
                         <value.icon className="w-6 h-6 text-brand-primary-light" />
                       </div>
                       <div>
@@ -118,10 +146,10 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </section>
+        </ScrollSection>
 
         {/* Tech Stack */}
-        <section className="section relative">
+        <ScrollSection revealDirection="right" className="section relative">
           <FloatingParticles count={6} className="opacity-15" />
           <div className="section-container relative z-10">
             <SectionHeading
@@ -129,10 +157,10 @@ export default function AboutPage() {
               subtitle="We work with modern, battle-tested technologies chosen for performance, scalability, and developer experience."
             />
             <ScrollReveal blur>
-              <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+              <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
                 {techStack.map((tech, i) => (
-                  <motion.span
-                    key={tech}
+                  <motion.div
+                    key={tech.name}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -147,15 +175,23 @@ export default function AboutPage() {
                       y: -2,
                       transition: { duration: 0.2 },
                     }}
-                    className="px-4 py-2 rounded-lg bg-white/5 border border-white/5 text-sm text-text-secondary hover:text-text-primary hover:border-brand-primary/30 hover:bg-brand-primary/5 hover:shadow-[0_0_16px_rgba(59,130,246,0.12)] transition-all duration-200 cursor-default"
+                    className="group flex min-h-24 cursor-default flex-col items-center justify-center gap-3 rounded-2xl border border-black/[.07] bg-white/75 px-3 py-4 text-center shadow-[0_12px_30px_rgba(26,20,42,.06)] backdrop-blur-md transition-all duration-300 hover:border-black/10 hover:bg-white hover:shadow-[0_18px_42px_rgba(26,20,42,.12)]"
                   >
-                    {tech}
-                  </motion.span>
+                    <span
+                      className="grid size-11 place-items-center rounded-xl border border-black/[.06] bg-white shadow-lg transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110"
+                      style={{ boxShadow: `0 10px 24px ${tech.color}26` }}
+                    >
+                      <tech.icon className="size-6" style={{ color: tech.color }} />
+                    </span>
+                    <span className="text-xs font-semibold leading-tight text-text-primary sm:text-sm">
+                      {tech.name}
+                    </span>
+                  </motion.div>
                 ))}
               </div>
             </ScrollReveal>
           </div>
-        </section>
+        </ScrollSection>
       </div>
     </PageTransition>
   );

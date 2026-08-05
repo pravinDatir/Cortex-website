@@ -1,20 +1,22 @@
 "use client";
 
-import SectionHeading from "@/components/ui/SectionHeading";
+import PremiumPageHero from "@/components/ui/PremiumPageHero";
 import ServiceCard from "@/components/ui/ServiceCard";
 import FloatingParticles from "@/components/effects/FloatingParticles";
 import PageTransition from "@/components/effects/PageTransition";
 import { services } from "@/content/services";
+import ScrollSection from "@/components/ui/ScrollSection";
 
 export default function ServicesPage() {
   return (
     <PageTransition>
-      <div className="pt-28 md:pt-32">
-        <section className="section relative">
+      <div className="pt-20 md:pt-24">
+        <ScrollSection className="section relative !pt-6 md:!pt-8">
           <FloatingParticles count={12} className="opacity-20" />
           <div className="absolute inset-0 bg-radial-glow opacity-30" />
           <div className="section-container relative z-10">
-            <SectionHeading
+            <PremiumPageHero
+              variant="services"
               title="Our Services"
               subtitle="End-to-end software solutions tailored to your business needs — from concept to deployment and beyond."
             />
@@ -24,7 +26,7 @@ export default function ServicesPage() {
               ))}
             </div>
           </div>
-        </section>
+        </ScrollSection>
       </div>
     </PageTransition>
   );

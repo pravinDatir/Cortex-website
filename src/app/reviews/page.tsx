@@ -1,20 +1,22 @@
 "use client";
 
-import SectionHeading from "@/components/ui/SectionHeading";
+import PremiumPageHero from "@/components/ui/PremiumPageHero";
 import TestimonialCard from "@/components/ui/TestimonialCard";
 import FloatingParticles from "@/components/effects/FloatingParticles";
 import PageTransition from "@/components/effects/PageTransition";
 import { reviews } from "@/content/reviews";
+import ScrollSection from "@/components/ui/ScrollSection";
 
 export default function ReviewsPage() {
   return (
     <PageTransition>
-      <div className="pt-28 md:pt-32">
-        <section className="section relative">
+      <div className="pt-20 md:pt-24">
+        <ScrollSection revealDirection="right" className="section relative !pt-6 md:!pt-8">
           <FloatingParticles count={10} className="opacity-15" />
           <div className="absolute inset-0 bg-radial-glow-purple opacity-30" />
           <div className="section-container relative z-10">
-            <SectionHeading
+            <PremiumPageHero
+              variant="reviews"
               title="Client Reviews"
               subtitle="Hear from the businesses we've helped transform through technology."
             />
@@ -24,7 +26,7 @@ export default function ReviewsPage() {
               ))}
             </div>
           </div>
-        </section>
+        </ScrollSection>
       </div>
     </PageTransition>
   );
