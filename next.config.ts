@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
-const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const isProd = process.env.NODE_ENV === "production";
 const repoName = "Cortex-website";
 
 const nextConfig: NextConfig = {
-  ...(isGitHubPages ? { output: "export", basePath: `/${repoName}`, trailingSlash: true } : {}),
+  output: "export",
+  basePath: isProd ? `/${repoName}` : "",
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
